@@ -1,0 +1,11 @@
+node_modules
+dist
+*.local
+.DS_Store
+.remember
+.superpowers
+*.tsbuildinfo
+
+# 내부 문서 (로컬 전용)
+CLAUDE.md
+docs/
