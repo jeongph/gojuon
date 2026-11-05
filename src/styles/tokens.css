@@ -1,0 +1,66 @@
+/*
+ * 디자인 토큰.
+ * 종이(和紙)처럼 살짝 차가운 회백색 바탕에 먹색 글자, 강조색은 쪽빛(藍) 하나만 쓴다.
+ * 정답/오답 색은 퀴즈 피드백에만 쓰고 장식에는 쓰지 않는다.
+ */
+:root {
+  --paper: #f4f5f2;
+  --surface: #ffffff;
+  --surface-sunken: #eceee9;
+  --ink: #24282d;
+  --ink-soft: #6b7079;
+  --ink-faint: #9aa0a8;
+  --line: #dcdfd8;
+  --line-strong: #c6cac2;
+
+  --ai: #2f5583;
+  --ai-strong: #244469;
+  --ai-tint: #e4ebf4;
+  --ai-ink: #ffffff;
+
+  --ok: #3e7b5b;
+  --ok-tint: #e3efe8;
+  --bad: #b5483e;
+  --bad-tint: #f6e5e3;
+
+  --font-ui: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+  --font-kana: 'Klee One', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', 'Noto Sans JP', 'Apple SD Gothic Neo', sans-serif;
+
+  --radius-s: 8px;
+  --radius-m: 12px;
+  --radius-l: 18px;
+
+  --shadow-sheet: 0 -8px 32px rgba(36, 40, 45, 0.14);
+
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --t-fast: 140ms;
+  --t-base: 220ms;
+  --t-flip: 420ms;
+
+  color-scheme: light;
+}
+
+[data-theme='dark'] {
+  --paper: #15181c;
+  --surface: #1d2126;
+  --surface-sunken: #23282e;
+  --ink: #e4e6e1;
+  --ink-soft: #9aa0a8;
+  --ink-faint: #6b7079;
+  --line: #2c323a;
+  --line-strong: #3a414a;
+
+  --ai: #8db0de;
+  --ai-strong: #a9c4e8;
+  --ai-tint: #243445;
+  --ai-ink: #0f1a28;
+
+  --ok: #7cc39b;
+  --ok-tint: #1f3329;
+  --bad: #e58b82;
+  --bad-tint: #3d2422;
+
+  --shadow-sheet: 0 -8px 32px rgba(0, 0, 0, 0.5);
+
+  color-scheme: dark;
+}
