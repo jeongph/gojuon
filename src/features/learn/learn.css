@@ -1,0 +1,141 @@
+.learn {
+  display: grid;
+  gap: 24px;
+}
+
+.learn__status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+
+.learn__status strong {
+  color: var(--ink);
+  font-weight: 650;
+}
+
+.learn__status-right {
+  display: flex;
+  gap: 16px;
+}
+
+/* 카드 */
+.card-stage {
+  display: grid;
+  justify-items: center;
+  gap: 24px;
+  padding-top: 8px;
+}
+
+.card {
+  width: min(100%, 420px);
+  aspect-ratio: 4 / 3.2;
+  perspective: 1400px;
+  border-radius: var(--radius-l);
+}
+
+.card__inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform var(--t-flip) var(--ease);
+}
+
+.card.is-flipped .card__inner {
+  transform: rotateY(180deg);
+}
+
+.card__face {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 10px;
+  padding: 28px;
+  border-radius: var(--radius-l);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  text-align: center;
+}
+
+.card__face--back {
+  transform: rotateY(180deg);
+}
+
+.card__glyph {
+  font-size: clamp(120px, 34vw, 168px);
+}
+
+.card__glyph--small {
+  font-size: 56px;
+  color: var(--ink-soft);
+}
+
+.card__romaji {
+  font-size: 48px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.card__korean {
+  font-size: 24px;
+  color: var(--ink-soft);
+}
+
+.card__hint {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  max-width: 34ch;
+  margin-top: 8px;
+}
+
+.card__tap {
+  position: absolute;
+  bottom: 16px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 12px;
+  color: var(--ink-faint);
+}
+
+.card__face--back .card__actions {
+  margin-top: 8px;
+}
+
+.learn__answers {
+  display: flex;
+  gap: 12px;
+  width: min(100%, 420px);
+}
+
+.learn__answers .btn {
+  flex: 1;
+  height: 52px;
+}
+
+.learn__answers kbd {
+  font-family: inherit;
+  font-size: 12px;
+  color: var(--ink-faint);
+  font-weight: 500;
+}
+
+.btn--primary kbd {
+  color: color-mix(in srgb, var(--ai-ink) 70%, transparent);
+}
+
+.learn__keys {
+  color: var(--ink-faint);
+  font-size: 13px;
+  text-align: center;
+}

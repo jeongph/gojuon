@@ -1,0 +1,272 @@
+.chart {
+  display: grid;
+  gap: 28px;
+}
+
+@media (min-width: 900px) {
+  .chart {
+    grid-template-columns: minmax(0, 1fr) 320px;
+    gap: 40px;
+    align-items: start;
+  }
+}
+
+.chart__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.chart__tip {
+  color: var(--ink-faint);
+  font-size: 13px;
+}
+
+/* 오십음도 표 */
+.grid {
+  display: grid;
+  grid-template-columns: 44px repeat(var(--cols), minmax(0, 1fr));
+  gap: 4px;
+}
+
+@media (min-width: 560px) {
+  .grid {
+    gap: 6px;
+    grid-template-columns: 52px repeat(var(--cols), minmax(0, 92px));
+    justify-content: start;
+  }
+}
+
+.grid__corner {
+  grid-column: 1;
+}
+
+.grid__col-head,
+.grid__row-head {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  color: var(--ink-faint);
+  font-size: 12px;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.grid__col-head {
+  padding-bottom: 6px;
+}
+
+.grid__col-head .kana {
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--ink-soft);
+  display: block;
+  margin-bottom: 2px;
+}
+
+.grid__row-head .kana {
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--ink-soft);
+}
+
+.grid__row-head small {
+  display: block;
+  font-size: 11px;
+}
+
+.cell {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 2px;
+  aspect-ratio: 1 / 1.04;
+  border-radius: var(--radius-s);
+  background: var(--surface);
+  border: 1px solid transparent;
+  transition: background var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease);
+}
+
+.cell:hover {
+  background: var(--surface-sunken);
+}
+
+.cell[aria-pressed='true'] {
+  background: var(--ai-tint);
+  border-color: var(--ai);
+}
+
+.cell__kana {
+  font-size: clamp(22px, 5.2vw, 32px);
+}
+
+.cell__romaji {
+  font-size: 11px;
+  color: var(--ink-faint);
+  letter-spacing: 0.01em;
+}
+
+@media (min-width: 560px) {
+  .cell__romaji {
+    font-size: 12px;
+  }
+}
+
+.cell[aria-pressed='true'] .cell__romaji {
+  color: var(--ai);
+}
+
+.cell--empty {
+  background: transparent;
+  pointer-events: none;
+}
+
+/* 상세 패널 */
+.detail {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-l);
+  padding: 28px 28px 24px;
+  display: grid;
+  gap: 22px;
+}
+
+@media (min-width: 900px) {
+  .detail {
+    position: sticky;
+    top: 82px;
+  }
+}
+
+.detail__head {
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+}
+
+.detail__glyph {
+  font-size: 112px;
+  letter-spacing: -0.02em;
+  margin-left: -6px;
+}
+
+.detail__reading {
+  display: grid;
+  gap: 2px;
+  padding-bottom: 10px;
+}
+
+.detail__romaji {
+  font-size: 30px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+}
+
+.detail__korean {
+  font-size: 20px;
+  color: var(--ink-soft);
+}
+
+.detail__alt {
+  font-size: 13px;
+  color: var(--ink-faint);
+}
+
+.detail__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.detail__block {
+  display: grid;
+  gap: 6px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.detail__block-title {
+  font-size: 13px;
+  font-weight: 650;
+  color: var(--ink-soft);
+}
+
+.detail__text {
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.detail__example {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.detail__example-word {
+  font-family: var(--font-kana);
+  font-weight: 600;
+  font-size: 26px;
+}
+
+.detail__example-reading {
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+
+.detail__example-meaning {
+  font-size: 15px;
+}
+
+.detail__close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+}
+
+.detail__empty {
+  color: var(--ink-soft);
+  font-size: 15px;
+}
+
+/* 모바일 바텀 시트 */
+.sheet-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  background: rgba(20, 22, 26, 0.3);
+}
+
+.detail--sheet {
+  position: fixed;
+  z-index: 21;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: var(--radius-l) var(--radius-l) 0 0;
+  border-bottom: 0;
+  box-shadow: var(--shadow-sheet);
+  padding: 28px 24px calc(24px + env(safe-area-inset-bottom));
+  max-height: 86dvh;
+  overflow-y: auto;
+  animation: sheet-in var(--t-base) var(--ease);
+}
+
+.detail--sheet .detail__glyph {
+  font-size: 96px;
+}
+
+@keyframes sheet-in {
+  from {
+    transform: translateY(24px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
