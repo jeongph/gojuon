@@ -21,6 +21,13 @@ export default function App() {
         {route === 'learn' && <LearnPage />}
         {route === 'quiz' && <QuizPage stats={stats} onStatsChange={setStats} />}
       </main>
+      <footer className="app-footer">
+        획순 도안은{' '}
+        <a href="https://kanjivg.tagaini.net" target="_blank" rel="noreferrer">
+          KanjiVG
+        </a>
+        의 데이터를 바탕으로 합니다. CC BY-SA 3.0
+      </footer>
     </>
   )
 }

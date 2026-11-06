@@ -43,3 +43,12 @@ export interface KanaRow {
   label: string
   kana: Kana[]
 }
+
+/**
+ * 글자 하나의 획순 데이터. 좌표계는 KanjiVG의 109×109 뷰박스.
+ * strokes는 획 순서대로의 SVG path d, numbers는 획 번호를 찍을 (x, y).
+ */
+export interface StrokeGlyph {
+  strokes: string[]
+  numbers: [number, number][]
+}

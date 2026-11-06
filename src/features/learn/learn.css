@@ -139,3 +139,31 @@
   font-size: 13px;
   text-align: center;
 }
+
+/* 카드 뒷면: 획순 도안 옆에 소리 */
+.card__answer {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.card__reading {
+  display: grid;
+  gap: 2px;
+  text-align: left;
+}
+
+.card__answer .card__romaji {
+  font-size: 40px;
+}
+
+.card__answer .card__korean {
+  font-size: 22px;
+}
+
+.card__face--back .card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}

@@ -33,3 +33,11 @@ export function CloseIcon({ className }: IconProps) {
     </svg>
   )
 }
+
+export function PlayIcon({ className }: IconProps) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" aria-hidden="true">
+      <path d="M8 5.5v13l10-6.5L8 5.5Z" />
+    </svg>
+  )
+}
