@@ -270,3 +270,24 @@
     opacity: 1;
   }
 }
+
+/* 상세 패널의 획순 */
+.detail__strokes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 16px;
+  margin-top: 4px;
+}
+
+.detail__strokes-side {
+  display: grid;
+  gap: 10px;
+  justify-items: start;
+  padding-top: 6px;
+}
+
+.detail__strokes-count {
+  font-size: 14px;
+  color: var(--ink-soft);
+}

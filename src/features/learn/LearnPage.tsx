@@ -5,9 +5,11 @@ import { Progress } from '../../components/Progress'
 import { RangePicker, defaultSelection, selectedKana } from '../../components/RangePicker'
 import { Segmented } from '../../components/Segmented'
 import { SpeakButton } from '../../components/SpeakButton'
+import { StrokeOrder, StrokePlayButton } from '../../components/StrokeOrder'
 import type { Kana } from '../../data/types'
 import { hrefFor } from '../../hooks/useHashRoute'
 import { shuffle } from '../../lib/quiz'
+import { strokeGlyphs } from '../../lib/strokes'
 
 type Front = 'kana' | 'reading'
 type Order = 'chart' | 'shuffle'
@@ -97,7 +99,7 @@ export function LearnPage() {
         <Progress value={done} max={study.total} label="학습 진행" />
 
         <div className="card-stage">
-          <Flashcard kana={current} front={front} flipped={study.flipped} onFlip={() => setStudy((s) => (s ? { ...s, flipped: !s.flipped } : s))} />
+          <Flashcard key={current.id} kana={current} front={front} flipped={study.flipped} onFlip={() => setStudy((s) => (s ? { ...s, flipped: !s.flipped } : s))} />
           <div className="learn__answers">
             <Button onClick={() => answer(false)}>
               다시 볼게요 <kbd>1</kbd>
@@ -208,6 +210,9 @@ export function LearnPage() {
 }
 
 function Flashcard({ kana, front, flipped, onFlip }: { kana: Kana; front: Front; flipped: boolean; onFlip: () => void }) {
+  const [strokeRun, setStrokeRun] = useState(0)
+  const glyphCount = strokeGlyphs(kana.kana).length
+
   const kanaFace = (
     <>
       <span className="card__glyph kana" lang="ja">
@@ -223,18 +228,26 @@ function Flashcard({ kana, front, flipped, onFlip }: { kana: Kana; front: Front;
       <span className="card__tap">눌러서 뒤집기</span>
     </>
   )
+  // 뒷면은 어느 방향이든 글자 모양을 획순 도안으로 보여 준다. 도안이 글자 자체이므로 글리프를 따로 두지 않는다.
   const back = (
     <>
-      {front === 'reading' ? (
-        <span className="card__glyph card__glyph--small kana" lang="ja">
-          {kana.kana}
-        </span>
-      ) : null}
-      <span className="card__romaji">{kana.romaji}</span>
-      <span className="card__korean">{kana.korean}</span>
+      <div className="card__answer">
+        {glyphCount > 0 ? (
+          <StrokeOrder kana={kana.kana} size={glyphCount > 1 ? 72 : 96} run={strokeRun} />
+        ) : (
+          <span className="card__glyph card__glyph--small kana" lang="ja">
+            {kana.kana}
+          </span>
+        )}
+        <div className="card__reading">
+          <span className="card__romaji">{kana.romaji}</span>
+          <span className="card__korean">{kana.korean}</span>
+        </div>
+      </div>
       {kana.hint && <p className="card__hint">{kana.hint}</p>}
       <div className="card__actions" onClick={(e) => e.stopPropagation()}>
         <SpeakButton text={kana.kana} />
+        {glyphCount > 0 && <StrokePlayButton again={strokeRun > 0} onClick={() => setStrokeRun((r) => r + 1)} />}
       </div>
     </>
   )

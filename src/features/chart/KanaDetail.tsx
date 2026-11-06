@@ -1,6 +1,9 @@
+import { useState } from 'react'
 import { CloseIcon } from '../../components/Icons'
 import { SpeakButton } from '../../components/SpeakButton'
+import { StrokeOrder, StrokePlayButton, strokeCountLabel } from '../../components/StrokeOrder'
 import type { Kana } from '../../data/types'
+import { strokeGlyphs } from '../../lib/strokes'
 
 type Props = {
   kana: Kana | null
@@ -41,6 +44,9 @@ export function KanaDetail({ kana, asSheet = false, onClose }: Props) {
         <SpeakButton text={kana.kana} />
       </div>
 
+      {/* 글자가 바뀌면 재생 상태를 처음으로 되돌리기 위해 key를 건다 */}
+      <StrokeBlock key={kana.id} kana={kana} />
+
       {kana.hint && (
         <div className="detail__block">
           <span className="detail__block-title">모양 힌트</span>
@@ -71,5 +77,24 @@ export function KanaDetail({ kana, asSheet = false, onClose }: Props) {
         </div>
       )}
     </aside>
+  )
+}
+
+function StrokeBlock({ kana }: { kana: Kana }) {
+  const [run, setRun] = useState(0)
+  const glyphs = strokeGlyphs(kana.kana)
+  if (glyphs.length === 0) return null
+
+  return (
+    <div className="detail__block">
+      <span className="detail__block-title">획순</span>
+      <div className="detail__strokes">
+        <StrokeOrder kana={kana.kana} size={glyphs.length > 1 ? 88 : 112} run={run} />
+        <div className="detail__strokes-side">
+          <span className="detail__strokes-count">{strokeCountLabel(kana.kana)}</span>
+          <StrokePlayButton again={run > 0} onClick={() => setRun((r) => r + 1)} />
+        </div>
+      </div>
+    </div>
   )
 }

@@ -109,3 +109,25 @@ p {
     animation-duration: 0ms !important;
   }
 }
+
+.app-footer {
+  width: 100%;
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 20px 28px;
+  color: var(--ink-faint);
+  font-size: 12px;
+  text-align: center;
+}
+
+.app-footer a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+@media (min-width: 900px) {
+  .app-footer {
+    padding: 0 32px 28px;
+  }
+}
