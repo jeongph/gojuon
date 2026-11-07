@@ -90,14 +90,6 @@
   color: var(--ink-soft);
 }
 
-.card__hint {
-  font-size: 14px;
-  line-height: 1.55;
-  color: var(--ink-soft);
-  max-width: 34ch;
-  margin-top: 8px;
-}
-
 .card__tap {
   position: absolute;
   bottom: 16px;

@@ -28,8 +28,6 @@ export interface Kana {
   alt: string[]
   /** 한국어 발음 표기 */
   korean: string
-  /** 모양을 기억하는 힌트 (기본 46자 + ん) */
-  hint?: string
   /** 발음·용법 메모 */
   note?: string
   example?: KanaExample

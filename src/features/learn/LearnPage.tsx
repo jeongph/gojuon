@@ -244,7 +244,6 @@ function Flashcard({ kana, front, flipped, onFlip }: { kana: Kana; front: Front;
           <span className="card__korean">{kana.korean}</span>
         </div>
       </div>
-      {kana.hint && <p className="card__hint">{kana.hint}</p>}
       <div className="card__actions" onClick={(e) => e.stopPropagation()}>
         <SpeakButton text={kana.kana} />
         {glyphCount > 0 && <StrokePlayButton again={strokeRun > 0} onClick={() => setStrokeRun((r) => r + 1)} />}

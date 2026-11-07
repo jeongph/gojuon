@@ -17,7 +17,7 @@ export function KanaDetail({ kana, asSheet = false, onClose }: Props) {
   if (!kana) {
     return (
       <aside className={className} aria-live="polite">
-        <p className="detail__empty">표에서 글자를 누르면 발음과 모양 힌트가 여기에 나옵니다.</p>
+        <p className="detail__empty">표에서 글자를 누르면 발음과 획순이 여기에 나옵니다.</p>
       </aside>
     )
   }
@@ -46,13 +46,6 @@ export function KanaDetail({ kana, asSheet = false, onClose }: Props) {
 
       {/* 글자가 바뀌면 재생 상태를 처음으로 되돌리기 위해 key를 건다 */}
       <StrokeBlock key={kana.id} kana={kana} />
-
-      {kana.hint && (
-        <div className="detail__block">
-          <span className="detail__block-title">모양 힌트</span>
-          <p className="detail__text">{kana.hint}</p>
-        </div>
-      )}
 
       {kana.note && (
         <div className="detail__block">
