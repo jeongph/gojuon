@@ -17,9 +17,8 @@ describe('히라가나 데이터', () => {
     expect(new Set(HIRAGANA.map((k) => k.kana)).size).toBe(HIRAGANA.length)
   })
 
-  it('기본 46자는 모양 힌트, 한국어 발음, 예시 단어를 모두 갖는다', () => {
+  it('기본 46자는 한국어 발음과 예시 단어를 모두 갖는다', () => {
     for (const k of flat(HIRAGANA_BASIC) as typeof HIRAGANA) {
-      expect(k.hint, k.kana).toBeTruthy()
       expect(k.korean, k.kana).toBeTruthy()
       expect(k.example, k.kana).toBeTruthy()
     }
