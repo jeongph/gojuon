@@ -134,15 +134,15 @@ export const HIRAGANA_DAKUON: KanaRow[] = [
   ]),
   row('za', 'dakuon', 'ざ행', V, [
     { kana: 'ざ', romaji: 'za', korean: '자', note: DAKU_NOTE },
-    { kana: 'じ', romaji: 'ji', korean: '지', alt: ['zi'], note: '영어 j에 가까운 "지". ぢ와 발음이 같다.' },
-    { kana: 'ず', romaji: 'zu', korean: '즈', note: 'づ와 발음이 같다.' },
+    { kana: 'じ', romaji: 'ji', korean: '지', alt: ['zi'], note: '영어 j에 가까운 "지". ぢ와 소리가 완전히 같아 로마자도 둘 다 ji다. 보통은 じ를 쓴다.' },
+    { kana: 'ず', romaji: 'zu', korean: '즈', note: 'づ와 소리가 완전히 같아 로마자도 둘 다 zu다. 보통은 ず를 쓴다.' },
     { kana: 'ぜ', romaji: 'ze', korean: '제', note: DAKU_NOTE },
     { kana: 'ぞ', romaji: 'zo', korean: '조', note: DAKU_NOTE },
   ]),
   row('da', 'dakuon', 'だ행', V, [
     { kana: 'だ', romaji: 'da', korean: '다', note: DAKU_NOTE },
-    { kana: 'ぢ', romaji: 'ji', korean: '지', alt: ['di'], note: 'じ와 발음이 같다. 현대 일본어에서는 몇 단어에서만 쓰인다. 키보드 입력은 di.' },
-    { kana: 'づ', romaji: 'zu', korean: '즈', alt: ['du'], note: 'ず와 발음이 같다. 현대 일본어에서는 몇 단어에서만 쓰인다. 키보드 입력은 du.' },
+    { kana: 'ぢ', romaji: 'ji', korean: '지', alt: ['di', 'zi'], note: 'じ와 소리가 완전히 같다. 표준어에서는 두 글자의 구별이 사라져 로마자도 같은 ji를 쓴다. はなぢ(코피), ちぢむ(줄어들다)처럼 ち가 탁음으로 바뀐 자리에만 쓴다. 키보드 입력은 di.' },
+    { kana: 'づ', romaji: 'zu', korean: '즈', alt: ['du'], note: 'ず와 소리가 완전히 같다. 표준어에서는 두 글자의 구별이 사라져 로마자도 같은 zu를 쓴다. つづく(계속되다), みかづき(초승달)처럼 つ가 탁음으로 바뀐 자리에만 쓴다. 키보드 입력은 du.' },
     { kana: 'で', romaji: 'de', korean: '데', note: DAKU_NOTE },
     { kana: 'ど', romaji: 'do', korean: '도', note: DAKU_NOTE },
   ]),
@@ -216,7 +216,7 @@ export const HIRAGANA_YOON: KanaRow[] = [
     { kana: 'じょ', romaji: 'jo', korean: '조', alt: ['jyo', 'zyo'], note: YOON_NOTE },
   ]),
   row('bya', 'yoon', 'びゃ행', Y, [
-    { kana: 'びゃ', romaji: 'bya', korean: '뱨', note: YOON_NOTE },
+    { kana: 'びゃ', romaji: 'bya', korean: '뱌', note: YOON_NOTE },
     { kana: 'びゅ', romaji: 'byu', korean: '뷰', note: YOON_NOTE },
     { kana: 'びょ', romaji: 'byo', korean: '뵤', note: YOON_NOTE },
   ]),
