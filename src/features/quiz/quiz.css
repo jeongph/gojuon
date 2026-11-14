@@ -131,6 +131,23 @@
   opacity: 0.5;
 }
 
+/* 고른 오답의 짝. 버튼 높이가 바뀌지 않게 번호(choice__key) 반대편 모서리에 둔다. */
+.choice__reveal {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  font-size: 12px;
+  font-weight: 650;
+  color: var(--bad);
+}
+
+.choice__reveal--kana {
+  top: 4px;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
 /* 입력형 */
 .typing {
   display: grid;
@@ -203,6 +220,17 @@
 .feedback__answer .kana {
   font-size: 22px;
   margin: 0 2px;
+}
+
+.feedback__picked {
+  color: var(--ink-soft);
+  font-size: 15px;
+}
+
+.feedback__picked .kana {
+  color: var(--ink);
+  font-size: 20px;
+  margin: 0 1px;
 }
 
 .quiz__keys {

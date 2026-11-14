@@ -7,7 +7,8 @@ import { Segmented } from '../../components/Segmented'
 import { HIRAGANA } from '../../data/hiragana'
 import type { Kana } from '../../data/types'
 import { buildQuestions, type Question, type QuizMode } from '../../lib/quiz'
-import { matchesRomaji } from '../../lib/romaji'
+import { topicParticle } from '../../lib/korean'
+import { findKanaByRomaji, matchesRomaji, normalizeRomaji } from '../../lib/romaji'
 import { recordAnswer, weakestKana, type KanaStats } from '../../lib/session'
 
 type Phase = 'setup' | 'run' | 'result'
@@ -298,6 +299,18 @@ function Choices({ q, answered, onPick }: { q: Question; answered: Run['answered
           else if (answered.chosen?.id === c.id) state = 'is-wrong'
           else state = 'is-dim'
         }
+        // 고른 오답에는 그 답의 짝(가나면 소리, 소리면 가나)을 모서리에 붙여 무엇을 골랐는지 보여 준다
+        const reveal =
+          state === 'is-wrong' &&
+          (q.mode === 'reading-to-kana' ? (
+            <span className="choice__reveal">
+              {c.romaji} {c.korean}
+            </span>
+          ) : (
+            <span className="choice__reveal choice__reveal--kana kana" lang="ja">
+              {c.kana}
+            </span>
+          ))
         return (
           <button
             key={c.id}
@@ -320,6 +333,7 @@ function Choices({ q, answered, onPick }: { q: Question; answered: Run['answered
                 <span className="choice__korean">{c.korean}</span>
               </>
             )}
+            {reveal}
           </button>
         )
       })}
@@ -400,10 +414,53 @@ function Feedback({ q, answered, onNext }: { q: Question; answered: Run['answere
           정답은 <span className="kana" lang="ja">{q.answer.kana}</span> {q.answer.romaji} {q.answer.korean}
         </span>
       </span>
+      <PickedNote q={q} answered={answered} />
       <Button variant="primary" onClick={onNext} autoFocus={q.mode !== 'typing'}>
         다음
       </Button>
     </div>
+  )
+}
+
+/** 오답일 때 내가 고른(입력한) 답이 무슨 글자·소리였는지 한 줄로 알려 준다. */
+function PickedNote({ q, answered }: { q: Question; answered: NonNullable<Run['answered']> }) {
+  if (q.mode === 'typing') {
+    const typed = normalizeRomaji(answered.typed)
+    const match = findKanaByRomaji(typed, HIRAGANA)
+    if (!match) return <span className="feedback__picked">입력한 {typed}에 맞는 글자는 없습니다</span>
+    return (
+      <span className="feedback__picked">
+        입력한 {typed}
+        {topicParticle(match.korean)}{' '}
+        <span className="kana" lang="ja">
+          {match.kana}
+        </span>
+        입니다
+      </span>
+    )
+  }
+  const picked = answered.chosen
+  if (!picked) return null
+  if (q.mode === 'reading-to-kana') {
+    return (
+      <span className="feedback__picked">
+        고른{' '}
+        <span className="kana" lang="ja">
+          {picked.kana}
+        </span>
+        {topicParticle(picked.korean)} {picked.romaji} {picked.korean}입니다
+      </span>
+    )
+  }
+  return (
+    <span className="feedback__picked">
+      고른 {picked.romaji} {picked.korean}
+      {topicParticle(picked.korean)}{' '}
+      <span className="kana" lang="ja">
+        {picked.kana}
+      </span>
+      입니다
+    </span>
   )
 }
 

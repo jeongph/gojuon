@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { HIRAGANA } from '../data/hiragana'
-import { matchesRomaji, normalizeRomaji } from './romaji'
+import { findKanaByRomaji, matchesRomaji, normalizeRomaji } from './romaji'
 
 const find = (kana: string) => HIRAGANA.find((k) => k.kana === kana)!
 
@@ -27,5 +27,28 @@ describe('matchesRomaji', () => {
   })
   it('빈 입력은 오답이다', () => {
     expect(matchesRomaji('   ', find('あ'))).toBe(false)
+  })
+})
+
+describe('findKanaByRomaji', () => {
+  const kanaOf = (input: string) => findKanaByRomaji(input, HIRAGANA)?.kana ?? null
+
+  it('입력한 로마자에 맞는 글자를 찾는다', () => {
+    expect(kanaOf('nu')).toBe('ぬ')
+    expect(kanaOf('kya')).toBe('きゃ')
+  })
+  it('공백·대소문자를 정리하고, 대체 표기로도 찾는다', () => {
+    expect(kanaOf(' SHI ')).toBe('し')
+    expect(kanaOf('si')).toBe('し')
+    expect(kanaOf('di')).toBe('ぢ')
+  })
+  it('여러 글자에 걸리면 대표 로마자가 같은 글자, 그다음 표 순서를 먼저 고른다', () => {
+    expect(kanaOf('o')).toBe('お')
+    expect(kanaOf('ji')).toBe('じ')
+    expect(kanaOf('zu')).toBe('ず')
+  })
+  it('맞는 글자가 없거나 빈 입력이면 null이다', () => {
+    expect(kanaOf('xyz')).toBeNull()
+    expect(kanaOf('  ')).toBeNull()
   })
 })
