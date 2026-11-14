@@ -30,7 +30,8 @@ export interface Kana {
   korean: string
   /** 발음·용법 메모 */
   note?: string
-  example?: KanaExample
+  /** 예시 단어 0~3개. 고유어가 드문 글자(みゅ 등)는 비어 있을 수 있다. */
+  examples: KanaExample[]
 }
 
 export interface KanaRow {

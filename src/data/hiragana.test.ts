@@ -1,7 +1,44 @@
 import { describe, expect, it } from 'vitest'
 import { HIRAGANA, HIRAGANA_BASIC, HIRAGANA_DAKUON, HIRAGANA_HANDAKUON, HIRAGANA_YOON } from './hiragana'
+import type { Kana } from './types'
 
-const flat = (rows: { kana: unknown[] }[]) => rows.flatMap((r) => r.kana)
+const flat = (rows: { kana: Kana[] }[]) => rows.flatMap((r) => r.kana)
+
+const SMALL_YOON = new Set(['ゃ', 'ゅ', 'ょ'])
+
+/** 요음(2글자)을 먼저 맞추도록 긴 글자부터 정렬한 표 */
+const TABLE = [...HIRAGANA].sort((a, b) => b.kana.length - a.kana.length)
+
+/**
+ * 예시 단어를 글자 표의 대표 로마자로 바꾼다. reading 오타를 잡기 위한 테스트 전용 변환이다.
+ * っ는 다음 소리의 첫 자음을 겹치고(ch는 t), を는 조사 발음대로 o로 읽는다.
+ */
+function toRomaji(word: string): string {
+  let out = ''
+  let geminate = false
+  for (let i = 0; i < word.length; ) {
+    if (word[i] === 'っ') {
+      geminate = true
+      i++
+      continue
+    }
+    if (word[i] === 'を') {
+      out += 'o'
+      i++
+      continue
+    }
+    const k = TABLE.find((t) => word.startsWith(t.kana, i))
+    if (!k) throw new Error(`글자 표에 없는 글자: ${word[i]} (${word})`)
+    let r = k.romaji
+    if (geminate) {
+      r = (r.startsWith('ch') ? 't' : r[0]) + r
+      geminate = false
+    }
+    out += r
+    i += k.kana.length
+  }
+  return out
+}
 
 describe('히라가나 데이터', () => {
   it('세트별 글자 수가 표준 오십음도와 같다', () => {
@@ -17,11 +54,8 @@ describe('히라가나 데이터', () => {
     expect(new Set(HIRAGANA.map((k) => k.kana)).size).toBe(HIRAGANA.length)
   })
 
-  it('기본 46자는 한국어 발음과 예시 단어를 모두 갖는다', () => {
-    for (const k of flat(HIRAGANA_BASIC) as typeof HIRAGANA) {
-      expect(k.korean, k.kana).toBeTruthy()
-      expect(k.example, k.kana).toBeTruthy()
-    }
+  it('모든 글자가 한국어 발음을 갖는다', () => {
+    for (const k of HIRAGANA) expect(k.korean, k.kana).toBeTruthy()
   })
 
   it('대체 로마자에 대표 로마자가 중복되지 않는다', () => {
@@ -29,10 +63,57 @@ describe('히라가나 데이터', () => {
       expect(k.alt, k.kana).not.toContain(k.romaji)
     }
   })
+})
+
+describe('예시 단어', () => {
+  it('기본 46자와 탁음·반탁음은 예시 단어가 정확히 3개다', () => {
+    for (const k of flat([...HIRAGANA_BASIC, ...HIRAGANA_DAKUON, ...HIRAGANA_HANDAKUON])) {
+      expect(k.examples, k.kana).toHaveLength(3)
+    }
+  })
+
+  it('요음은 みゅ를 빼고 예시 단어가 하나 이상이다', () => {
+    for (const k of flat(HIRAGANA_YOON)) {
+      if (k.kana === 'みゅ') continue
+      expect(k.examples.length, k.kana).toBeGreaterThan(0)
+    }
+  })
+
+  it('예시 단어는 3개를 넘지 않고, 한 글자 안에서 겹치지 않는다', () => {
+    for (const k of HIRAGANA) {
+      expect(k.examples.length, k.kana).toBeLessThanOrEqual(3)
+      expect(new Set(k.examples.map((e) => e.word)).size, k.kana).toBe(k.examples.length)
+    }
+  })
 
   it('예시 단어는 그 글자를 실제로 포함한다', () => {
     for (const k of HIRAGANA) {
-      if (k.example) expect(k.example.word, k.kana).toContain(k.kana)
+      for (const e of k.examples) expect(e.word, k.kana).toContain(k.kana)
+    }
+  })
+
+  it('요음이 아닌 글자는 요음의 일부가 아닌 자리에 나온다 (き 예시가 きょう뿐이면 안 됨)', () => {
+    for (const k of HIRAGANA) {
+      if (k.group === 'yoon') continue
+      for (const e of k.examples) {
+        const chars = Array.from(e.word)
+        const plain = chars.some((ch, i) => ch === k.kana && !SMALL_YOON.has(chars[i + 1]))
+        expect(plain, `${k.kana}: ${e.word}`).toBe(true)
+      }
+    }
+  })
+
+  it('로마자 읽기가 글자 표와 맞는다', () => {
+    for (const k of HIRAGANA) {
+      for (const e of k.examples) {
+        expect(e.reading.replace(/[\s'-]/g, ''), `${k.kana}: ${e.word}`).toBe(toRomaji(e.word))
+      }
+    }
+  })
+
+  it('뜻이 비어 있지 않다', () => {
+    for (const k of HIRAGANA) {
+      for (const e of k.examples) expect(e.meaning.trim(), `${k.kana}: ${e.word}`).not.toBe('')
     }
   })
 })

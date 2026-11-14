@@ -54,19 +54,25 @@ export function KanaDetail({ kana, asSheet = false, onClose }: Props) {
         </div>
       )}
 
-      {kana.example && (
+      {kana.examples.length > 0 && (
         <div className="detail__block">
           <span className="detail__block-title">예시 단어</span>
-          <div className="detail__example">
-            <span className="detail__example-word" lang="ja">
-              {kana.example.word}
-            </span>
-            <span className="detail__example-reading">{kana.example.reading}</span>
-            <span className="detail__example-meaning">{kana.example.meaning}</span>
-          </div>
-          <div className="detail__actions">
-            <SpeakButton text={kana.example.word} label="단어 듣기" />
-          </div>
+          <ul className="detail__examples">
+            {kana.examples.map((ex) => (
+              <li key={ex.word} className="detail__example">
+                <div className="detail__example-body">
+                  <span className="detail__example-head">
+                    <span className="detail__example-word" lang="ja">
+                      {ex.word}
+                    </span>
+                    <span className="detail__example-reading">{ex.reading}</span>
+                  </span>
+                  <span className="detail__example-meaning">{ex.meaning}</span>
+                </div>
+                <SpeakButton text={ex.word} compact />
+              </li>
+            ))}
+          </ul>
         </div>
       )}
     </aside>
