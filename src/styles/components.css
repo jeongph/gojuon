@@ -406,6 +406,19 @@
   overflow: visible;
 }
 
+/* 十字リーダー 칸. 획보다 확실히 옅게 두어 도안을 가리지 않는다. */
+.strokes__frame {
+  fill: none;
+  stroke: var(--line-strong);
+  stroke-width: 1.2;
+}
+
+.strokes__cross {
+  stroke: var(--line-strong);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+
 .strokes__path,
 .strokes__guide {
   fill: none;

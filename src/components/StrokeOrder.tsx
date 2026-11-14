@@ -46,6 +46,7 @@ export function StrokeOrder({ kana, size = 120, run = 0, onEnd, className = '' }
           role="img"
           aria-label={`${char} 획순, ${glyph.strokes.length}획`}
         >
+          <StrokeGrid />
           {playing && glyph.strokes.map((d, i) => <path key={`guide-${i}`} className="strokes__guide" d={d} />)}
           {glyph.strokes.map((d, i) => {
             const k = index++
@@ -83,6 +84,31 @@ export function StrokeOrder({ kana, size = 120, run = 0, onEnd, className = '' }
         </svg>
       ))}
     </div>
+  )
+}
+
+const GRID_CENTER = STROKE_VIEWBOX / 2
+/** 테두리 선이 뷰박스 밖으로 잘리지 않게 선 굵기 절반만큼 안쪽으로 들인다 (CSS stroke-width와 맞춘다) */
+const GRID_INSET = 0.6
+
+/**
+ * 일본 초등 국어 공책의 十字リーダー 칸. 테두리와 가운데 점선 십자로 획이 칸의 어디쯤에서
+ * 시작하고 끝나는지 가늠하게 한다. KanjiVG 글자는 109 뷰박스 가운데를 기준으로 그려져 있다.
+ */
+function StrokeGrid() {
+  const end = STROKE_VIEWBOX - GRID_INSET
+  return (
+    <g className="strokes__grid" aria-hidden="true">
+      <rect
+        className="strokes__frame"
+        x={GRID_INSET}
+        y={GRID_INSET}
+        width={STROKE_VIEWBOX - GRID_INSET * 2}
+        height={STROKE_VIEWBOX - GRID_INSET * 2}
+      />
+      <line className="strokes__cross" x1={GRID_CENTER} y1={GRID_INSET} x2={GRID_CENTER} y2={end} />
+      <line className="strokes__cross" x1={GRID_INSET} y1={GRID_CENTER} x2={end} y2={GRID_CENTER} />
+    </g>
   )
 }
 
