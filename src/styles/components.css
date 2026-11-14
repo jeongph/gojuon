@@ -394,6 +394,14 @@
   height: 16px;
 }
 
+/* 아이콘만 있는 동그란 버튼 (예시 단어 줄마다 붙는 듣기 등) */
+.pill--icon {
+  justify-content: center;
+  flex-shrink: 0;
+  width: 34px;
+  padding: 0;
+}
+
 /* 획순 도안 */
 .strokes {
   display: flex;
@@ -404,6 +412,19 @@
   width: var(--stroke-size, 120px);
   height: var(--stroke-size, 120px);
   overflow: visible;
+}
+
+/* 十字リーダー 칸. 획보다 확실히 옅게 두어 도안을 가리지 않는다. */
+.strokes__frame {
+  fill: none;
+  stroke: var(--line-strong);
+  stroke-width: 1.2;
+}
+
+.strokes__cross {
+  stroke: var(--line-strong);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
 }
 
 .strokes__path,
