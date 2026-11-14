@@ -86,7 +86,7 @@ export const HIRAGANA_BASIC: KanaRow[] = [
     { kana: 'ひ', romaji: 'hi', korean: '히', examples: [['ひと', 'hito', '사람'], ['ひかり', 'hikari', '빛'], ['あさひ', 'asahi', '아침 해']] },
     { kana: 'ふ', romaji: 'fu', korean: '후', alt: ['hu'], note: '입술을 둥글게 모으지 않고 "후". 영어 f와 h의 중간 소리. 로마자는 fu와 hu 둘 다 쓴다.', examples: [['ふね', 'fune', '배(선박)'], ['ふゆ', 'fuyu', '겨울'], ['さいふ', 'saifu', '지갑']] },
     { kana: 'へ', romaji: 'he', korean: '헤', note: '조사(~에/으로)로 쓰일 때는 "에(e)"로 읽는다.', examples: [['へや', 'heya', '방'], ['へび', 'hebi', '뱀'], ['おへそ', 'oheso', '배꼽']] },
-    { kana: 'ほ', romaji: 'ho', korean: '호', examples: [['ほし', 'hoshi', '별'], ['ほん', 'hon', '책'], ['ほね', 'hone', '뼈']] },
+    { kana: 'ほ', romaji: 'ho', korean: '호', examples: [['ほし', 'hoshi', '별'], ['ほん', 'hon', '책'], ['にほん', 'nihon', '일본']] },
   ]),
   row('ma', 'basic', 'ま행', V, [
     { kana: 'ま', romaji: 'ma', korean: '마', examples: [['まち', 'machi', '마을, 거리'], ['まど', 'mado', '창문'], ['くま', 'kuma', '곰']] },
@@ -127,13 +127,13 @@ export const HIRAGANA_DAKUON: KanaRow[] = [
   row('ga', 'dakuon', 'が행', V, [
     { kana: 'が', romaji: 'ga', korean: '가', note: DAKU_NOTE, examples: [['がっこう', 'gakkou', '학교'], ['めがね', 'megane', '안경'], ['まんが', 'manga', '만화']] },
     { kana: 'ぎ', romaji: 'gi', korean: '기', note: DAKU_NOTE, examples: [['ぎんこう', 'ginkou', '은행'], ['かぎ', 'kagi', '열쇠'], ['うさぎ', 'usagi', '토끼']] },
-    { kana: 'ぐ', romaji: 'gu', korean: '구', note: DAKU_NOTE, examples: [['どうぐ', 'dougu', '도구'], ['かぐ', 'kagu', '가구'], ['すぐ', 'sugu', '곧, 바로']] },
+    { kana: 'ぐ', romaji: 'gu', korean: '구', note: DAKU_NOTE, examples: [['どうぐ', 'dougu', '도구'], ['もぐら', 'mogura', '두더지'], ['すぐ', 'sugu', '곧, 바로']] },
     { kana: 'げ', romaji: 'ge', korean: '게', note: DAKU_NOTE, examples: [['げんき', 'genki', '건강함, 기운'], ['ひげ', 'hige', '수염'], ['かげ', 'kage', '그림자']] },
     { kana: 'ご', romaji: 'go', korean: '고', note: DAKU_NOTE, examples: [['ごはん', 'gohan', '밥'], ['たまご', 'tamago', '달걀'], ['いちご', 'ichigo', '딸기']] },
   ]),
   row('za', 'dakuon', 'ざ행', V, [
     { kana: 'ざ', romaji: 'za', korean: '자', note: DAKU_NOTE, examples: [['ざっし', 'zasshi', '잡지'], ['ひざ', 'hiza', '무릎'], ['かざり', 'kazari', '장식']] },
-    { kana: 'じ', romaji: 'ji', korean: '지', alt: ['zi'], note: '영어 j에 가까운 "지". ぢ와 소리가 완전히 같아 로마자도 둘 다 ji다. 보통은 じ를 쓴다.', examples: [['じかん', 'jikan', '시간'], ['かじ', 'kaji', '불, 화재'], ['ひつじ', 'hitsuji', '양']] },
+    { kana: 'じ', romaji: 'ji', korean: '지', alt: ['zi'], note: '영어 j에 가까운 "지". ぢ와 소리가 완전히 같아 로마자도 둘 다 ji다. 보통은 じ를 쓴다.', examples: [['じかん', 'jikan', '시간'], ['かじ', 'kaji', '화재'], ['ひつじ', 'hitsuji', '양']] },
     { kana: 'ず', romaji: 'zu', korean: '즈', note: 'づ와 소리가 완전히 같아 로마자도 둘 다 zu다. 보통은 ず를 쓴다.', examples: [['ずっと', 'zutto', '줄곧, 계속'], ['みず', 'mizu', '물'], ['すずめ', 'suzume', '참새']] },
     { kana: 'ぜ', romaji: 'ze', korean: '제', note: DAKU_NOTE, examples: [['ぜんぶ', 'zenbu', '전부'], ['かぜ', 'kaze', '바람, 감기'], ['なぜ', 'naze', '왜']] },
     { kana: 'ぞ', romaji: 'zo', korean: '조', note: DAKU_NOTE, examples: [['ぞう', 'zou', '코끼리'], ['かぞく', 'kazoku', '가족'], ['なぞ', 'nazo', '수수께끼']] },
@@ -158,7 +158,7 @@ const HANDAKU_NOTE = 'は행에 반탁점(゜)을 붙인 글자. ㅍ 소리.'
 
 export const HIRAGANA_HANDAKUON: KanaRow[] = [
   row('pa', 'handakuon', 'ぱ행', V, [
-    { kana: 'ぱ', romaji: 'pa', korean: '파', note: HANDAKU_NOTE, examples: [['かんぱい', 'kanpai', '건배'], ['しんぱい', 'shinpai', '걱정'], ['いっぱい', 'ippai', '가득']] },
+    { kana: 'ぱ', romaji: 'pa', korean: '파', note: HANDAKU_NOTE, examples: [['かんぱい', 'kanpai', '건배'], ['はっぱ', 'happa', '잎, 나뭇잎'], ['いっぱい', 'ippai', '가득']] },
     { kana: 'ぴ', romaji: 'pi', korean: '피', note: HANDAKU_NOTE, examples: [['えんぴつ', 'enpitsu', '연필'], ['しんぴ', 'shinpi', '신비'], ['ぴかぴか', 'pikapika', '반짝반짝 (의태어)']] },
     { kana: 'ぷ', romaji: 'pu', korean: '푸', note: HANDAKU_NOTE, examples: [['てんぷら', 'tenpura', '튀김'], ['きっぷ', 'kippu', '표, 승차권'], ['さんぷん', 'sanpun', '3분']] },
     { kana: 'ぺ', romaji: 'pe', korean: '페', note: HANDAKU_NOTE, examples: [['かんぺき', 'kanpeki', '완벽'], ['てっぺん', 'teppen', '꼭대기'], ['ぺこぺこ', 'pekopeko', '배가 몹시 고픈 모양 (의태어)']] },
@@ -170,7 +170,7 @@ const YOON_NOTE = 'い단 글자 뒤에 작은 ゃ·ゅ·ょ를 붙여 한 음�
 
 export const HIRAGANA_YOON: KanaRow[] = [
   row('kya', 'yoon', 'きゃ행', Y, [
-    { kana: 'きゃ', romaji: 'kya', korean: '캬', note: YOON_NOTE, examples: [['おきゃくさん', 'okyakusan', '손님'], ['かんきゃく', 'kankyaku', '관객'], ['じょうきゃく', 'joukyaku', '승객']] },
+    { kana: 'きゃ', romaji: 'kya', korean: '캬', note: YOON_NOTE, examples: [['おきゃくさん', 'okyakusan', '손님'], ['かんきゃく', 'kankyaku', '관객'], ['きゃくせき', 'kyakuseki', '객석']] },
     { kana: 'きゅ', romaji: 'kyu', korean: '큐', note: YOON_NOTE, examples: [['きゅうり', 'kyuuri', '오이'], ['きゅう', 'kyuu', '아홉(9)'], ['やきゅう', 'yakyuu', '야구']] },
     { kana: 'きょ', romaji: 'kyo', korean: '쿄', note: YOON_NOTE, examples: [['きょう', 'kyou', '오늘'], ['きょうしつ', 'kyoushitsu', '교실'], ['べんきょう', 'benkyou', '공부']] },
   ]),
@@ -182,7 +182,7 @@ export const HIRAGANA_YOON: KanaRow[] = [
   row('cha', 'yoon', 'ちゃ행', Y, [
     { kana: 'ちゃ', romaji: 'cha', korean: '챠', alt: ['tya'], note: YOON_NOTE, examples: [['おちゃ', 'ocha', '차(마시는 차)'], ['おもちゃ', 'omocha', '장난감'], ['ちゃわん', 'chawan', '밥공기, 찻잔']] },
     { kana: 'ちゅ', romaji: 'chu', korean: '츄', alt: ['tyu'], note: YOON_NOTE, examples: [['ちゅうい', 'chuui', '주의'], ['ちゅうごく', 'chuugoku', '중국'], ['うちゅう', 'uchuu', '우주']] },
-    { kana: 'ちょ', romaji: 'cho', korean: '쵸', alt: ['tyo'], note: YOON_NOTE, examples: [['ちょっと', 'chotto', '조금, 잠깐'], ['ちょきん', 'chokin', '저금'], ['ちょうし', 'choushi', '상태, 컨디션']] },
+    { kana: 'ちょ', romaji: 'cho', korean: '쵸', alt: ['tyo'], note: YOON_NOTE, examples: [['ちょっと', 'chotto', '조금, 잠깐'], ['ちょきん', 'chokin', '저금'], ['いちょう', 'ichou', '은행나무']] },
   ]),
   row('nya', 'yoon', 'にゃ행', Y, [
     { kana: 'にゃ', romaji: 'nya', korean: '냐', note: YOON_NOTE, examples: [['こんにゃく', 'konnyaku', '곤약'], ['にゃあ', 'nyaa', '야옹 (의성어)'], ['ふにゃふにゃ', 'funyafunya', '흐물흐물 (의태어)']] },
@@ -190,7 +190,7 @@ export const HIRAGANA_YOON: KanaRow[] = [
     { kana: 'にょ', romaji: 'nyo', korean: '뇨', note: YOON_NOTE, examples: [['にょろにょろ', 'nyoronyoro', '꿈틀꿈틀 기어가는 모양 (의태어)'], ['にょきにょき', 'nyokinyoki', '쑥쑥 솟아나는 모양 (의태어)']] },
   ]),
   row('hya', 'yoon', 'ひゃ행', Y, [
-    { kana: 'ひゃ', romaji: 'hya', korean: '햐', note: YOON_NOTE, examples: [['ひゃく', 'hyaku', '백(100)'], ['ひゃくえん', 'hyakuen', '100엔'], ['ひゃっかてん', 'hyakkaten', '백화점']] },
+    { kana: 'ひゃ', romaji: 'hya', korean: '햐', note: YOON_NOTE, examples: [['ひゃく', 'hyaku', '백(100)'], ['にひゃく', 'nihyaku', '이백(200)'], ['ひゃっかてん', 'hyakkaten', '백화점']] },
     { kana: 'ひゅ', romaji: 'hyu', korean: '휴', note: YOON_NOTE, examples: [['ひゅうひゅう', 'hyuuhyuu', '바람이 휭휭 부는 소리 (의성어)']] },
     { kana: 'ひょ', romaji: 'hyo', korean: '효', note: YOON_NOTE, examples: [['ひょうじょう', 'hyoujou', '표정'], ['ひょうし', 'hyoushi', '표지(책 겉면)'], ['だいひょう', 'daihyou', '대표']] },
   ]),
@@ -202,22 +202,22 @@ export const HIRAGANA_YOON: KanaRow[] = [
   row('rya', 'yoon', 'りゃ행', Y, [
     { kana: 'りゃ', romaji: 'rya', korean: '랴', note: YOON_NOTE, examples: [['りゃくご', 'ryakugo', '약어, 줄임말'], ['りゃくず', 'ryakuzu', '약도'], ['しょうりゃく', 'shouryaku', '생략']] },
     { kana: 'りゅ', romaji: 'ryu', korean: '류', note: YOON_NOTE, examples: [['りゅう', 'ryuu', '용'], ['りゅうがく', 'ryuugaku', '유학'], ['こうりゅう', 'kouryuu', '교류']] },
-    { kana: 'りょ', romaji: 'ryo', korean: '료', note: YOON_NOTE, examples: [['りょこう', 'ryokou', '여행'], ['りょうり', 'ryouri', '요리'], ['りょうしん', 'ryoushin', '부모님']] },
+    { kana: 'りょ', romaji: 'ryo', korean: '료', note: YOON_NOTE, examples: [['りょこう', 'ryokou', '여행'], ['りょうり', 'ryouri', '요리'], ['えんりょ', 'enryo', '사양함, 삼감']] },
   ]),
   row('gya', 'yoon', 'ぎゃ행', Y, [
     { kana: 'ぎゃ', romaji: 'gya', korean: '갸', note: YOON_NOTE, examples: [['ぎゃく', 'gyaku', '반대, 거꾸로'], ['ぎゃくてん', 'gyakuten', '역전'], ['ぎゃっこう', 'gyakkou', '역광']] },
-    { kana: 'ぎゅ', romaji: 'gyu', korean: '규', note: YOON_NOTE, examples: [['ぎゅうにゅう', 'gyuunyuu', '우유'], ['ぎゅうにく', 'gyuuniku', '소고기'], ['ぎゅうどん', 'gyuudon', '소고기덮밥']] },
+    { kana: 'ぎゅ', romaji: 'gyu', korean: '규', note: YOON_NOTE, examples: [['ぎゅうにゅう', 'gyuunyuu', '우유'], ['ぎゅうにく', 'gyuuniku', '소고기'], ['わぎゅう', 'wagyuu', '와규(일본 소고기)']] },
     { kana: 'ぎょ', romaji: 'gyo', korean: '교', note: YOON_NOTE, examples: [['きんぎょ', 'kingyo', '금붕어'], ['ぎょうざ', 'gyouza', '교자(군만두)'], ['ぎょうれつ', 'gyouretsu', '행렬, 줄']] },
   ]),
   row('ja', 'yoon', 'じゃ행', Y, [
     { kana: 'じゃ', romaji: 'ja', korean: '자', alt: ['jya', 'zya'], note: YOON_NOTE, examples: [['じゃま', 'jama', '방해'], ['じゃがいも', 'jagaimo', '감자'], ['にんじゃ', 'ninja', '닌자']] },
-    { kana: 'じゅ', romaji: 'ju', korean: '주', alt: ['jyu', 'zyu'], note: YOON_NOTE, examples: [['じゅぎょう', 'jugyou', '수업'], ['じゅう', 'juu', '열(10)'], ['じゅんばん', 'junban', '순서']] },
+    { kana: 'じゅ', romaji: 'ju', korean: '주', alt: ['jyu', 'zyu'], note: YOON_NOTE, examples: [['じゅぎょう', 'jugyou', '수업'], ['じゅう', 'juu', '열(10)'], ['ごじゅう', 'gojuu', '오십(50)']] },
     { kana: 'じょ', romaji: 'jo', korean: '조', alt: ['jyo', 'zyo'], note: YOON_NOTE, examples: [['じょうず', 'jouzu', '능숙함, 잘함'], ['じょせい', 'josei', '여성'], ['かのじょ', 'kanojo', '그녀']] },
   ]),
   row('bya', 'yoon', 'びゃ행', Y, [
     { kana: 'びゃ', romaji: 'bya', korean: '뱌', note: YOON_NOTE, examples: [['さんびゃく', 'sanbyaku', '삼백(300)'], ['びゃくや', 'byakuya', '백야']] },
     { kana: 'びゅ', romaji: 'byu', korean: '뷰', note: YOON_NOTE, examples: [['びゅうびゅう', 'byuubyuu', '바람이 세차게 부는 소리 (의성어)'], ['びゅんびゅん', 'byunbyun', '빠르게 휙휙 지나가는 모양 (의태어)']] },
-    { kana: 'びょ', romaji: 'byo', korean: '뵤', note: YOON_NOTE, examples: [['びょういん', 'byouin', '병원'], ['びょうき', 'byouki', '병'], ['びょうどう', 'byoudou', '평등']] },
+    { kana: 'びょ', romaji: 'byo', korean: '뵤', note: YOON_NOTE, examples: [['びょういん', 'byouin', '병원'], ['びょうき', 'byouki', '병'], ['がびょう', 'gabyou', '압정']] },
   ]),
   row('pya', 'yoon', 'ぴゃ행', Y, [
     { kana: 'ぴゃ', romaji: 'pya', korean: '퍄', note: YOON_NOTE, examples: [['ろっぴゃく', 'roppyaku', '육백(600)'], ['はっぴゃく', 'happyaku', '팔백(800)']] },

@@ -103,6 +103,22 @@ describe('예시 단어', () => {
     }
   })
 
+  it('예시 3개가 모두 같은 자리(첫머리·가운데·끝)에 글자를 두지는 않는다', () => {
+    // を는 조사라서 늘 명사 뒤에, づ는 연탁(つ→づ)으로만 생겨 늘 단어 가운데에 온다.
+    // ぎゃ는 첫머리가 아닌 자리에 쓰는 쉬운 고유어가 없다. 셋은 예외로 둔다.
+    const EXCEPT = new Set(['を', 'づ', 'ぎゃ'])
+    const position = (word: string, kana: string) => {
+      const i = word.indexOf(kana)
+      if (i === 0) return 'start'
+      return i + kana.length === word.length ? 'end' : 'middle'
+    }
+    for (const k of HIRAGANA) {
+      if (k.examples.length < 3 || EXCEPT.has(k.kana)) continue
+      const positions = new Set(k.examples.map((e) => position(e.word, k.kana)))
+      expect(positions.size, `${k.kana}: ${k.examples.map((e) => e.word).join(', ')}`).toBeGreaterThan(1)
+    }
+  })
+
   it('로마자 읽기가 글자 표와 맞는다', () => {
     for (const k of HIRAGANA) {
       for (const e of k.examples) {
