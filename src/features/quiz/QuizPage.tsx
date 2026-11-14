@@ -289,7 +289,7 @@ function Prompt({ q }: { q: Question }) {
   )
 }
 
-function Choices({ q, answered, onPick }: { q: Question; answered: Run['answered']; onPick: (k: Kana) => void }) {
+export function Choices({ q, answered, onPick }: { q: Question; answered: Run['answered']; onPick: (k: Kana) => void }) {
   return (
     <div className="choices" role="group" aria-label="선택지">
       {q.choices.map((c, i) => {
@@ -299,18 +299,19 @@ function Choices({ q, answered, onPick }: { q: Question; answered: Run['answered
           else if (answered.chosen?.id === c.id) state = 'is-wrong'
           else state = 'is-dim'
         }
-        // 고른 오답에는 그 답의 짝(가나면 소리, 소리면 가나)을 모서리에 붙여 무엇을 골랐는지 보여 준다
+        // 고른 오답에는 그 답의 짝(가나면 소리, 소리면 가나)을 한 줄 더 보여 무엇을 골랐는지 알려 준다.
+        // 답한 뒤 버튼 높이가 바뀌지 않도록 모든 선택지에 같은 줄을 미리 두고, 고른 오답에서만 드러낸다.
+        const hidden = state !== 'is-wrong'
         const reveal =
-          state === 'is-wrong' &&
-          (q.mode === 'reading-to-kana' ? (
-            <span className="choice__reveal">
+          q.mode === 'reading-to-kana' ? (
+            <span className="choice__reveal" aria-hidden={hidden || undefined}>
               {c.romaji} {c.korean}
             </span>
           ) : (
-            <span className="choice__reveal choice__reveal--kana kana" lang="ja">
+            <span className="choice__reveal choice__reveal--kana kana" lang="ja" aria-hidden={hidden || undefined}>
               {c.kana}
             </span>
-          ))
+          )
         return (
           <button
             key={c.id}

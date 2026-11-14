@@ -131,21 +131,25 @@
   opacity: 0.5;
 }
 
-/* 고른 오답의 짝. 버튼 높이가 바뀌지 않게 번호(choice__key) 반대편 모서리에 둔다. */
+/*
+ * 고른 오답의 짝. 모든 선택지가 이 줄을 갖고 있어 자리가 미리 잡혀 있고, 고른 오답에서만 보인다.
+ * 모서리에 띄우면 좁은 화면(320px)에서 가운데 글자와 맞닿아 버튼 안 한 줄로 둔다.
+ */
 .choice__reveal {
-  position: absolute;
-  top: 8px;
-  right: 10px;
-  font-size: 12px;
+  visibility: hidden;
+  font-size: 13px;
   font-weight: 650;
+  line-height: 18px;
   color: var(--bad);
 }
 
+.choice.is-wrong .choice__reveal {
+  visibility: visible;
+}
+
 .choice__reveal--kana {
-  top: 4px;
-  font-size: 20px;
+  font-size: 17px;
   font-weight: 600;
-  line-height: 1.2;
 }
 
 /* 입력형 */
