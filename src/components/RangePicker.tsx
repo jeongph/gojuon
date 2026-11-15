@@ -7,7 +7,7 @@ import type { Kana, KanaRow } from '../data/types'
  * 선택 상태는 행 id 집합으로 들고, 실제 글자 풀은 selectedKana()로 꺼낸다.
  */
 export const RANGE_GROUPS: { title: string; rows: KanaRow[] }[] = [
-  { title: '기본', rows: HIRAGANA_BASIC },
+  { title: '기본(청음)', rows: HIRAGANA_BASIC },
   { title: '탁음·반탁음', rows: [...HIRAGANA_DAKUON, ...HIRAGANA_HANDAKUON] },
   { title: '요음', rows: HIRAGANA_YOON },
 ]
