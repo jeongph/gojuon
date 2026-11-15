@@ -9,7 +9,7 @@ import { KanaGrid } from './KanaGrid'
 type Tab = 'basic' | 'daku' | 'yoon'
 
 const TABS: { value: Tab; label: string }[] = [
-  { value: 'basic', label: '기본 46자' },
+  { value: 'basic', label: '기본 46자(청음)' },
   { value: 'daku', label: '탁음·반탁음' },
   { value: 'yoon', label: '요음' },
 ]
